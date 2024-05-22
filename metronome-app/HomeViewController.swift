@@ -1,18 +1,75 @@
 //
-//  HapticController.swift
+//  HomeViewController.swift
 //  metronome-app
 //
 //  Created by 佐伯小遥 on 2024/05/23.
 //
 
 import UIKit
+import AVFoundation
 
-class HapticController: UIViewController {
+class HomeViewController: UIViewController {
+    @IBOutlet var metronomeLabel: UILabel!
+    @IBOutlet var bpmSlider: UISlider!
+    
+    var audioPlayer: AVAudioPlayer?
+    var timer: Timer?
+    var isMetronomeActive: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupAudioPlayer()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupAudioPlayer() {
+            guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "mp3") else {
+                print("Sound file not found")
+                return
+            }
+            
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer?.prepareToPlay()
+            } catch let error {
+                print("Audio player error: \(error.localizedDescription)")
+            }
+    }
+    
+    @IBAction func changeBpm(_ sender: UISlider){
+        // Int指定
+        let sliderValue:Int = Int(bpmSlider.value)
+        metronomeLabel.text = String(sliderValue)
+        
+        if isMetronomeActive{
+            restartMetronome()
+        }
+    }
+    
+    
+    func restartMetronome() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        isMetronomeActive = true
+    }
+    
+    
+    @objc func playSound(){
+        audioPlayer?.play()
+    }
+    
+    @IBAction func startMetronome(_ sender: UIButton) {
+        isMetronomeActive = true
+        
+        var nowBpm = Double(metronomeLabel.text ?? "0") ?? 0.0
+        
+        timer?.invalidate() // Stop any existing timer
+        timer = Timer.scheduledTimer(timeInterval: (0.5 / nowBpm), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func stopMetronome(_ sender: UIButton) {
+        timer?.invalidate()
+        isMetronomeActive = false
     }
     
 

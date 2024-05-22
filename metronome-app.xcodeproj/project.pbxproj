@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		0FBC947A2BFCF89E00D87A25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94792BFCF89E00D87A25 /* AppDelegate.swift */; };
 		0FBC947C2BFCF89E00D87A25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC947B2BFCF89E00D87A25 /* SceneDelegate.swift */; };
-		0FBC947E2BFCF89E00D87A25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC947D2BFCF89E00D87A25 /* ViewController.swift */; };
 		0FBC94812BFCF89E00D87A25 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94802BFCF89E00D87A25 /* Base */; };
 		0FBC94832BFCF89F00D87A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94822BFCF89F00D87A25 /* Assets.xcassets */; };
 		0FBC94862BFCF89F00D87A25 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94852BFCF89F00D87A25 /* Base */; };
+		0FBC94902BFE40E300D87A25 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */; };
+		0FBC94922BFE4D8300D87A25 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94912BFE4D8300D87A25 /* sound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0FBC94762BFCF89E00D87A25 /* metronome-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "metronome-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FBC94792BFCF89E00D87A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FBC947B2BFCF89E00D87A25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0FBC947D2BFCF89E00D87A25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0FBC94802BFCF89E00D87A25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0FBC94822BFCF89F00D87A25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FBC94852BFCF89F00D87A25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0FBC94872BFCF89F00D87A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0FBC94912BFE4D8300D87A25 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				0FBC94792BFCF89E00D87A25 /* AppDelegate.swift */,
 				0FBC947B2BFCF89E00D87A25 /* SceneDelegate.swift */,
-				0FBC947D2BFCF89E00D87A25 /* ViewController.swift */,
 				0FBC947F2BFCF89E00D87A25 /* Main.storyboard */,
 				0FBC94822BFCF89F00D87A25 /* Assets.xcassets */,
 				0FBC94842BFCF89F00D87A25 /* LaunchScreen.storyboard */,
+				0FBC94912BFE4D8300D87A25 /* sound.mp3 */,
 				0FBC94872BFCF89F00D87A25 /* Info.plist */,
+				0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */,
 			);
 			path = "metronome-app";
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FBC94922BFE4D8300D87A25 /* sound.mp3 in Resources */,
 				0FBC94832BFCF89F00D87A25 /* Assets.xcassets in Resources */,
 				0FBC94862BFCF89F00D87A25 /* Base in Resources */,
 				0FBC94812BFCF89E00D87A25 /* Base in Resources */,
@@ -138,8 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FBC947E2BFCF89E00D87A25 /* ViewController.swift in Sources */,
 				0FBC947A2BFCF89E00D87A25 /* AppDelegate.swift in Sources */,
+				0FBC94902BFE40E300D87A25 /* HomeViewController.swift in Sources */,
 				0FBC947C2BFCF89E00D87A25 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
