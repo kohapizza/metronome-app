@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     var isMetronomeActive: Bool = false
 
     override func viewDidLoad() {
+        //bpmSlider.value = 100 //初期化
         super.viewDidLoad()
         setupAudioPlayer()
         // Do any additional setup after loading the view.
@@ -49,7 +50,7 @@ class HomeViewController: UIViewController {
     
     func restartMetronome() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)*2), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
         isMetronomeActive = true
     }
     
@@ -64,7 +65,7 @@ class HomeViewController: UIViewController {
         var nowBpm = Double(metronomeLabel.text ?? "0") ?? 0.0
         
         timer?.invalidate() // Stop any existing timer
-        timer = Timer.scheduledTimer(timeInterval: (0.5 / nowBpm), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: (0.5 / nowBpm*2), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
     }
     
     @IBAction func stopMetronome(_ sender: UIButton) {

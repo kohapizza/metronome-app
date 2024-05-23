@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="keQ-Sn-OJW">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddq-Mu-Y5y">
-                                <rect key="frame" x="0.0" y="600" width="200" height="140"/>
+                                <rect key="frame" x="0.0" y="514" width="200" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="⏸️">
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnP-En-XSx">
-                                <rect key="frame" x="65" y="443" width="67" height="98"/>
+                                <rect key="frame" x="66" y="389" width="67" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+">
@@ -43,7 +43,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGE-mh-KY5">
-                                <rect key="frame" x="271" y="443" width="55" height="98"/>
+                                <rect key="frame" x="273" y="389" width="55" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="-">
@@ -51,7 +51,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCo-aw-EwR">
-                                <rect key="frame" x="200" y="600" width="200" height="140"/>
+                                <rect key="frame" x="193" y="514" width="200" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="▶️">
@@ -65,13 +65,14 @@
                                 <rect key="frame" x="24" y="298" width="344" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="changeBpm:" destination="BYZ-38-t0r" eventType="touchDragInside" id="2vf-mo-5ee"/>
+                                    <action selector="changeBpm:" destination="BYZ-38-t0r" eventType="valueChanged" id="v2R-lX-CDH"/>
                                 </connections>
                             </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="XWY-fb-ylU"/>
                     <connections>
                         <outlet property="bpmSlider" destination="S7C-kJ-M13" id="yen-Nh-0h7"/>
                         <outlet property="metronomeLabel" destination="Sv0-oo-X0L" id="hzn-gt-ydj"/>
@@ -79,25 +80,82 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1237" y="787"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mF0-gT-1E1">
+        <!--Caleder-->
+        <scene sceneID="iok-mF-kUw">
             <objects>
-                <viewController id="2rb-Jp-th3" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Hlh-Mo-cWM">
+                <viewController id="K09-2Y-B9Y" customClass="CalenderTabViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R8i-Og-PD3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="AY7-72-e74"/>
+                        <viewLayoutGuide key="safeArea" id="tuP-UB-vN1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Caleder" image="calendar" catalog="system" id="d6K-iq-DtC"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0lq-Fj-rbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ye4-Zw-76O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="4"/>
+            <point key="canvasLocation" x="2880" y="787"/>
+        </scene>
+        <!--Game-->
+        <scene sceneID="L4m-I1-wWG">
+            <objects>
+                <viewController id="TUP-w2-OY2" customClass="GameTabViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wKJ-lH-Vaw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="u2j-eb-ONM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Game" image="music.note" catalog="system" id="Rjr-GZ-f1z"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3n0-ca-hVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3689" y="787"/>
+        </scene>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="69P-qT-iAX">
+            <objects>
+                <tabBarController id="keQ-Sn-OJW" customClass="TabBarViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gaw-iZ-8Yq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qzJ-Ng-E9o" kind="relationship" relationship="viewControllers" id="Eyk-me-Jnx"/>
+                        <segue destination="K09-2Y-B9Y" kind="relationship" relationship="viewControllers" id="wHG-tG-mc3"/>
+                        <segue destination="TUP-w2-OY2" kind="relationship" relationship="viewControllers" id="sra-0K-QYK"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Vnk-Kg-Lgh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3z2-y8-ocP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056" y="4"/>
+        </scene>
+        <!--Practice-->
+        <scene sceneID="nBv-p7-q7P">
+            <objects>
+                <viewController id="qzJ-Ng-E9o" customClass="PracticeTabViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="agf-MW-UpK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rvs-vt-hhZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Practice" image="music.quarternote.3" catalog="system" id="U7q-SL-lZK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Jx-Yw-Nfr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056" y="787"/>
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="music.note" catalog="system" width="96" height="128"/>
+        <image name="music.quarternote.3" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
