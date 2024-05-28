@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         //bpmSlider.value = 100 //初期化
-        super.viewDidLoad()
         setupAudioPlayer()
         // Do any additional setup after loading the view.
     }

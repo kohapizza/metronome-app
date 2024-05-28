@@ -8,37 +8,26 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var menuViewControllers: [UIViewController] = []
-        
-        let homeTabViewController = HomeViewController()
-        let practiceTabViewController = PracticeTabViewController()
-        let calendarTabViewController = CalenderTabViewController()
-        let gameTabViewController = GameTabViewController()
-        
-        menuViewControllers.append(homeTabViewController)
-        menuViewControllers.append(practiceTabViewController)
-        menuViewControllers.append(calendarTabViewController)
-        menuViewControllers.append(gameTabViewController)
-        
-        self.setViewControllers(menuViewControllers, animated: false)
-        
-
-        // Do any additional setup after loading the view.
+        //setupTab()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+ 
+private extension TabBarViewController {
+//    func setupTab() {
+//        let homeTabViewController = HomeViewController()
+//        homeTabViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+//        let practiceTabViewController = PracticeTabViewController()
+//        practiceTabViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+//        let calendarTabViewController = CalenderTabViewController()
+//        calendarTabViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+//        let gameTabViewController = GameTabViewController()
+//        gameTabViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+//        
+//        viewControllers = [homeTabViewController, practiceTabViewController, calendarTabViewController, gameTabViewController]
+//    }
+}
+
+
