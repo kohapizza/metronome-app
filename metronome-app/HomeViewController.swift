@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
         isMetronomeActive = true
+        print("Now BPM :", bpmSlider.value) // OK
     }
     
     @objc func playSound(){
@@ -61,7 +62,7 @@ class HomeViewController: UIViewController {
         isMetronomeActive = true
         
         let nowBpm = max(Double(metronomeLabel.text ?? "120") ?? 120.0, 1.0)
-        print(nowBpm) // OK
+        print("Now BPM :", nowBpm) // OK
         
         timer?.invalidate() // Stop any existing timer
         timer = Timer.scheduledTimer(timeInterval: (60.0 / nowBpm), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
@@ -70,6 +71,24 @@ class HomeViewController: UIViewController {
     @IBAction func stopMetronome(_ sender: UIButton) {
         timer?.invalidate()
         isMetronomeActive = false
+    }
+    
+    @IBAction func upBpm(_ sender: UIButton){
+        bpmSlider.value += 1
+        metronomeLabel.text = String(Int(bpmSlider.value))
+        
+        if isMetronomeActive{
+            restartMetronome()
+        }
+    }
+    
+    @IBAction func downBpm(_ sender: UIButton){
+        bpmSlider.value -= 1
+        metronomeLabel.text = String(Int(bpmSlider.value))
+        
+        if isMetronomeActive{
+            restartMetronome()
+        }
     }
 
 }
