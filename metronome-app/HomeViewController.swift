@@ -17,13 +17,12 @@ class HomeViewController: UIViewController {
     var isMetronomeActive: Bool = false
 
     override func viewDidLoad() {
-        //bpmSlider.value = 100 //初期化
+        bpmSlider.value = 100 //初期化
         setupAudioPlayer()
-        // Do any additional setup after loading the view.
     }
     
     func setupAudioPlayer() {
-            guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "mp3") else {
+            guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "wav") else {
                 print("Sound file not found")
                 return
             }
@@ -48,11 +47,11 @@ class HomeViewController: UIViewController {
     
     
     func restartMetronome() {
+        //print(bpmSlider.value) OK
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)*2), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: (60.0 / Double(bpmSlider.value)), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
         isMetronomeActive = true
     }
-    
     
     @objc func playSound(){
         audioPlayer?.play()
@@ -61,26 +60,16 @@ class HomeViewController: UIViewController {
     @IBAction func startMetronome(_ sender: UIButton) {
         isMetronomeActive = true
         
-        var nowBpm = Double(metronomeLabel.text ?? "0") ?? 0.0
+        let nowBpm = max(Double(metronomeLabel.text ?? "120") ?? 120.0, 1.0)
+        print(nowBpm) // OK
         
         timer?.invalidate() // Stop any existing timer
-        timer = Timer.scheduledTimer(timeInterval: (0.5 / nowBpm*2), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: (60.0 / nowBpm), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
     }
     
     @IBAction func stopMetronome(_ sender: UIButton) {
         timer?.invalidate()
         isMetronomeActive = false
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3A4D362C0701B400E145DA /* sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F3A4D352C0701B400E145DA /* sound.wav */; };
 		0FBC947A2BFCF89E00D87A25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94792BFCF89E00D87A25 /* AppDelegate.swift */; };
 		0FBC947C2BFCF89E00D87A25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC947B2BFCF89E00D87A25 /* SceneDelegate.swift */; };
 		0FBC94812BFCF89E00D87A25 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94802BFCF89E00D87A25 /* Base */; };
 		0FBC94832BFCF89F00D87A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94822BFCF89F00D87A25 /* Assets.xcassets */; };
 		0FBC94862BFCF89F00D87A25 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94852BFCF89F00D87A25 /* Base */; };
 		0FBC94902BFE40E300D87A25 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */; };
-		0FBC94922BFE4D8300D87A25 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC94912BFE4D8300D87A25 /* sound.mp3 */; };
 		0FBC94942BFF21FB00D87A25 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94932BFF21FB00D87A25 /* TabBarViewController.swift */; };
 		0FBC94982BFF273300D87A25 /* PracticeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */; };
 		0FBC949A2BFF274500D87A25 /* CalenderTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */; };
@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F3A4D352C0701B400E145DA /* sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound.wav; sourceTree = SOURCE_ROOT; };
 		0FBC94762BFCF89E00D87A25 /* metronome-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "metronome-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FBC94792BFCF89E00D87A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FBC947B2BFCF89E00D87A25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		0FBC94852BFCF89F00D87A25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0FBC94872BFCF89F00D87A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		0FBC94912BFE4D8300D87A25 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 		0FBC94932BFF21FB00D87A25 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTabViewController.swift; sourceTree = "<group>"; };
 		0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderTabViewController.swift; sourceTree = "<group>"; };
@@ -71,13 +71,13 @@
 				0FBC947F2BFCF89E00D87A25 /* Main.storyboard */,
 				0FBC94822BFCF89F00D87A25 /* Assets.xcassets */,
 				0FBC94842BFCF89F00D87A25 /* LaunchScreen.storyboard */,
-				0FBC94912BFE4D8300D87A25 /* sound.mp3 */,
 				0FBC94872BFCF89F00D87A25 /* Info.plist */,
 				0FBC948F2BFE40E300D87A25 /* HomeViewController.swift */,
 				0FBC94932BFF21FB00D87A25 /* TabBarViewController.swift */,
 				0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */,
 				0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */,
 				0FBC949B2BFF275000D87A25 /* GameTabViewController.swift */,
+				0F3A4D352C0701B400E145DA /* sound.wav */,
 			);
 			path = "metronome-app";
 			sourceTree = "<group>";
@@ -140,10 +140,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FBC94922BFE4D8300D87A25 /* sound.mp3 in Resources */,
 				0FBC94832BFCF89F00D87A25 /* Assets.xcassets in Resources */,
 				0FBC94862BFCF89F00D87A25 /* Base in Resources */,
 				0FBC94812BFCF89E00D87A25 /* Base in Resources */,
+				0F3A4D362C0701B400E145DA /* sound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
