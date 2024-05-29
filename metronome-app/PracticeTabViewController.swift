@@ -12,27 +12,35 @@ class PracticeTabViewController: UIViewController {
     @IBOutlet var metronomeLabel: UILabel!
     @IBOutlet var bpmSlider: UISlider!
     
+    @IBOutlet var bpmTextField: UITextField!
+    @IBOutlet var durationTextField: UITextField!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var remainingTimeLabel: UILabel!
+    
     var audioPlayer: AVAudioPlayer?
-    var timer: Timer?
+    var timer: Timer? // for metronome
+    var durationTimer: Timer? // for duration
+    var endTime: Date?
+    
     var isMetronomeActive: Bool = false
-
+    
     override func viewDidLoad() {
         bpmSlider.value = 100 //初期化
         setupAudioPlayer()
     }
     
     func setupAudioPlayer() {
-            guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "wav") else {
-                print("Sound file not found")
-                return
-            }
-            
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                audioPlayer?.prepareToPlay()
-            } catch let error {
-                print("Audio player error: \(error.localizedDescription)")
-            }
+        guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "wav") else {
+            print("Sound file not found")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.prepareToPlay()
+        } catch let error {
+            print("Audio player error: \(error.localizedDescription)")
+        }
     }
     
     @IBAction func changeBpm(_ sender: UISlider){
@@ -72,14 +80,55 @@ class PracticeTabViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    
+    @IBAction func startPractice(_ sender: UIButton) {
+        guard let bpmText = bpmTextField.text, let bpm = Double(bpmText),
+              let durationText = durationTextField.text, let durationInSeconds = Double(durationText) else {
+            print("Invalid BPM or duration")
+            return
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        startMetronomeWithTimer(bpm: bpm, duration: durationInSeconds)
     }
-    */
-
+    
+    
+    
+    @objc func updateRemainingTime() {
+        if let endTime = endTime {
+            let remainingTime = max(endTime.timeIntervalSinceNow, 0)
+            let hours = Int(remainingTime) / 3600
+            let minutes = Int(remainingTime) / 60 % 60
+            let seconds = Int(remainingTime) % 60
+            remainingTimeLabel.text = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+            
+            if remainingTime <= 0 {
+                durationTimer?.invalidate()
+                timer?.invalidate()
+                isMetronomeActive = false
+                remainingTimeLabel.text = "00:00:00"
+            }
+        }
+    }
+    
+    func startMetronomeWithTimer(bpm: Double, duration: Double) {
+        // メトロノームを開始
+        isMetronomeActive = true
+        timer?.invalidate() // 既存のタイマーを無効化
+        endTime = Date().addingTimeInterval(duration)
+        
+        timer = Timer.scheduledTimer(timeInterval: 60.0 / bpm, target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        
+        durationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateRemainingTime), userInfo: nil, repeats: true)
+    }
+    
+    
+    
+    func stopMetronome() {
+        timer?.invalidate()
+        durationTimer?.invalidate()
+        isMetronomeActive = false
+        print("Metronome stopped")
+        remainingTimeLabel.text = "00:00:00"
+    }
+    
 }
