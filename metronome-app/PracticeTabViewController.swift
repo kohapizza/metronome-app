@@ -14,29 +14,32 @@ class PracticeTabViewController: UIViewController {
     @IBOutlet var durationTextField: UITextField! // 練習周期
     @IBOutlet var chengeTextField: UITextField! // 一回ごとに変えるbpm
     @IBOutlet weak var remainingTimeLabel: UILabel! // 残り時間表示
-    @IBOutlet var bpmSlider: UISlider!
-
+    @IBOutlet weak var messageLabel: UILabel! // 残り時間表示
+    
     var audioPlayer: AVAudioPlayer?
-    var timer: Timer? // for metronome
+    
+    var countdownTimer: Timer? // for metronome
     var durationTimer: Timer? // for duration
+    
     var currentBpm: Double = 120.0
     var bpmIncrement: Double = 0.0
     var durationInSeconds: Double = 60.0
     
+    var currentTime: TimeInterval = 0.0
+    
     var isMetronomeActive: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudioPlayer()
-        bpmSlider.value = Float(currentBpm)
     }
-
+    
     func setupAudioPlayer() {
         guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "wav") else {
             print("Sound file not found")
             return
         }
-
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
             audioPlayer?.prepareToPlay()
@@ -44,7 +47,47 @@ class PracticeTabViewController: UIViewController {
             print("Audio player error: \(error.localizedDescription)")
         }
     }
+    
+    
+    func stopMetronome() {
+        countdownTimer?.invalidate()
+        durationTimer?.invalidate()
+        isMetronomeActive = false
+        remainingTimeLabel.text = "00:00"
+        print("Metronome stopped")
+    }
+    
+    @IBAction func stopPractice(_ sender: UIButton){
+        stopMetronome()
+    }
+    
+    @objc func playSound() {
+        audioPlayer?.play()
+    }
+    
+    func displayTextForSeconds(_ text: String, duration: TimeInterval) {
+            messageLabel.text = text
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                self.messageLabel.text = ""
+            }
+    }
+    
+    func updateCountdownLabel() {
+        remainingTimeLabel.text = "Time remaining: \(Int(currentTime)) seconds"
+    }
+    
+    func updateMessageLabel(){
+        displayTextForSeconds("tempo is up!", duration: 3)
+    }
+    
 
+    func startMetronomeWithTimer() {
+        durationTimer?.invalidate()
+        metronomeLabel.text = String(format: "%.0f", currentBpm)
+        durationTimer = Timer.scheduledTimer(timeInterval: 60.0 / currentBpm, target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
+        
+    }
+    
     @IBAction func startPractice(_ sender: UIButton) {
         guard let bpmText = bpmTextField.text, let initialBpm = Double(bpmText),
               let changeText = chengeTextField.text, let bpmIncrement = Double(changeText),
@@ -52,42 +95,32 @@ class PracticeTabViewController: UIViewController {
             print("Invalid BPM or duration")
             return
         }
-
-        self.currentBpm = initialBpm
-        self.bpmIncrement = bpmIncrement
-        self.durationInSeconds = durationInSeconds
-        startMetronomeWithTimer()
-    }
-
-    func startMetronomeWithTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 60.0 / currentBpm, target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
         
-        durationTimer?.invalidate()
-        durationTimer = Timer.scheduledTimer(withTimeInterval: durationInSeconds, repeats: false) { [weak self] _ in
-            self?.updateBpmAndRestartMetronome()
+        self.bpmIncrement = bpmIncrement
+        self.currentBpm = initialBpm
+        self.currentTime = durationInSeconds
+        
+        
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+            guard let self = self else {return}
+            
+            
+            self.updateCountdownLabel()
+            print("currentBpm :", currentBpm) //OK
+            print("currentTime :", currentTime) //OK
+            self.currentTime -= 1.0
+            
+            
+            if self.currentTime <= 0{
+                self.updateCountdownLabel()
+                self.currentTime = durationInSeconds
+                
+                self.updateMessageLabel()
+                self.updateCountdownLabel()
+                self.startMetronomeWithTimer()
+                self.currentBpm += bpmIncrement
+                
+            }
         }
-    }
-
-    @objc func playSound() {
-        audioPlayer?.play()
-    }
-
-    func updateBpmAndRestartMetronome() {
-        currentBpm += bpmIncrement
-        metronomeLabel.text = String(format: "%.0f", currentBpm)
-        startMetronomeWithTimer()
-    }
-
-    @IBAction func stopPractice(_ sender: UIButton){
-        stopMetronome()
-    }
-
-    func stopMetronome() {
-        timer?.invalidate()
-        durationTimer?.invalidate()
-        isMetronomeActive = false
-        remainingTimeLabel.text = "00:00"
-        print("Metronome stopped")
     }
 }

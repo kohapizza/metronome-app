@@ -155,10 +155,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="fKQ-gO-bC0">
-                                <rect key="frame" x="24" y="141" width="344" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IXI-N0-S4I">
                                 <rect key="frame" x="261" y="186" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -196,7 +192,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-Ia-OGb">
-                                <rect key="frame" x="261" y="392" width="110" height="54"/>
+                                <rect key="frame" x="118" y="392" width="253" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -250,10 +246,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Practice" image="music.mic" catalog="system" id="meh-2n-8Na"/>
                     <connections>
-                        <outlet property="bpmSlider" destination="fKQ-gO-bC0" id="cFQ-6Z-Thq"/>
                         <outlet property="bpmTextField" destination="IXI-N0-S4I" id="98A-Hb-sv7"/>
                         <outlet property="chengeTextField" destination="adx-P4-Mgt" id="16L-Kn-ano"/>
                         <outlet property="durationTextField" destination="KTl-W2-KIB" id="iAy-Tu-xYU"/>
+                        <outlet property="messageLabel" destination="GKX-pg-9fB" id="jtV-rZ-u3I"/>
                         <outlet property="metronomeLabel" destination="oyz-JM-gqs" id="LxF-LC-iAD"/>
                         <outlet property="remainingTimeLabel" destination="Hdt-Ia-OGb" id="JTY-za-Lyg"/>
                     </connections>
