@@ -32,6 +32,7 @@ class PracticeTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudioPlayer()
+        loadLastSessionData()
     }
     
     func setupAudioPlayer() {
@@ -54,7 +55,32 @@ class PracticeTabViewController: UIViewController {
         durationTimer?.invalidate()
         isMetronomeActive = false
         remainingTimeLabel.text = "00:00"
+        saveLastBpm()
         print("Metronome stopped")
+    }
+    
+    func loadLastSessionData() {
+        let defaults = UserDefaults.standard
+        if let lastSession = defaults.object(forKey: "LastSession") as? [String: Any],
+           let bpm = lastSession["bpm"] as? Double,
+           let date = lastSession["date"] as? Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            
+            // 日付の表示のためのフォーマット
+            messageLabel.text = "Last BPM: \(bpm) on \(dateFormatter.string(from: date))"
+        }
+    }
+    
+    func saveLastBpm(){ // 最後のbpmを保存
+        let defaults = UserDefaults.standard
+        let lastSessionData = [
+            "bpm": currentBpm,
+            "date": Date()
+        ] as [String : Any]
+        defaults.set(lastSessionData, forKey: "LastSession")
+        defaults.synchronize()
     }
     
     @IBAction func stopPractice(_ sender: UIButton){
