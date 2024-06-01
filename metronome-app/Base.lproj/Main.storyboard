@@ -24,47 +24,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddq-Mu-Y5y">
-                                <rect key="frame" x="0.0" y="514" width="200" height="140"/>
+                                <rect key="frame" x="39" y="536" width="135" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="⏸️">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="80"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="stop.circle" catalog="system"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="stopMetronome:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4U2-vk-UA4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnP-En-XSx">
-                                <rect key="frame" x="66" y="389" width="67" height="98"/>
+                                <rect key="frame" x="75" y="421" width="50" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="+">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="70"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle.dashed" catalog="system"/>
                                 <connections>
                                     <action selector="upBpm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Itq-o6-5en"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGE-mh-KY5">
-                                <rect key="frame" x="273" y="389" width="55" height="98"/>
+                                <rect key="frame" x="276" y="421" width="50" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="-">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="70"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system"/>
                                 <connections>
                                     <action selector="downBpm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gIz-Nq-HwV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCo-aw-EwR">
-                                <rect key="frame" x="193" y="514" width="200" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="▶️">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="80"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="startMetronome:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sEo-jM-CSQ"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="S7C-kJ-M13">
@@ -74,6 +59,17 @@
                                     <action selector="changeBpm:" destination="BYZ-38-t0r" eventType="valueChanged" id="v2R-lX-CDH"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCo-aw-EwR">
+                                <rect key="frame" x="210" y="536" width="135" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="restart.circle" catalog="system"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="startMetronome:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sEo-jM-CSQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="0.98570837637532049" blue="0.67064064604879448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216" y="787"/>
+            <point key="canvasLocation" x="1214.5038167938931" y="786.61971830985919"/>
         </scene>
         <!--Caleder-->
         <scene sceneID="iok-mF-kUw">
@@ -271,8 +267,12 @@
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="minus.circle" catalog="system" width="128" height="123"/>
         <image name="music.mic" catalog="system" width="128" height="119"/>
         <image name="music.note" catalog="system" width="96" height="128"/>
+        <image name="plus.circle.dashed" catalog="system" width="128" height="123"/>
+        <image name="restart.circle" catalog="system" width="128" height="123"/>
+        <image name="stop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
