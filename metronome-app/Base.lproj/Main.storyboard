@@ -240,6 +240,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEm-39-odX">
+                                <rect key="frame" x="275" y="118" width="91" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="vibration"/>
+                                <connections>
+                                    <action selector="toggleVibration:" destination="uM0-wG-DRL" eventType="touchUpInside" id="xmj-wM-dKN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DTc-sN-GSq"/>
                         <color key="backgroundColor" red="1" green="0.98570837639999997" blue="0.67064064599999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

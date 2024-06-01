@@ -7,6 +7,7 @@
 //
 import UIKit
 import AVFoundation
+import AudioToolbox
 
 class PracticeTabViewController: UIViewController {
     @IBOutlet var metronomeLabel: UILabel!
@@ -15,6 +16,8 @@ class PracticeTabViewController: UIViewController {
     @IBOutlet var chengeTextField: UITextField! // 一回ごとに変えるbpm
     @IBOutlet weak var remainingTimeLabel: UILabel! // 残り時間表示
     @IBOutlet weak var messageLabel: UILabel! // 残り時間表示
+    
+    var isVibrationEnabled: Bool = false // 振動させるか否か
     
     var audioPlayer: AVAudioPlayer?
     
@@ -33,6 +36,10 @@ class PracticeTabViewController: UIViewController {
         super.viewDidLoad()
         setupAudioPlayer()
         loadLastSessionData()
+    }
+    @IBAction func toggleVibration(_ sender: UIButton) {
+        isVibrationEnabled.toggle()  // 振動の状態を切り替える
+        sender.setTitle(isVibrationEnabled ? "Vibration ON" : "Vibration OFF", for: .normal)
     }
     
     func setupAudioPlayer() {
@@ -89,7 +96,13 @@ class PracticeTabViewController: UIViewController {
     
     @objc func playSound() {
         audioPlayer?.play()
+        
+        if isVibrationEnabled{
+            //振動実行
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
     }
+    
     
     func displayTextForSeconds(_ text: String, duration: TimeInterval) {
             messageLabel.text = text
