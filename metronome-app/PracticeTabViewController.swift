@@ -18,9 +18,15 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var remainingTimeLabel: UILabel! // 残り時間表示
     @IBOutlet weak var messageLabel: UILabel! // 残り時間表示
     
-    @IBOutlet var togglePracticeButton: UIButton! // 練習開始/終了
+    @IBOutlet var togglePracticeButton: UIButton!
     
     
+    @IBOutlet var plusBpmButton: UIButton!
+    @IBOutlet var minusBpmButton: UIButton!
+    @IBOutlet var plusDurationButton: UIButton!
+    @IBOutlet var minusDurationButton: UIButton!
+    @IBOutlet var plusChangeButton: UIButton!
+    @IBOutlet var minusChangeButton: UIButton!
     
     var isVibrationEnabled: Bool = false // 振動させるか否か
     
@@ -32,6 +38,7 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     var currentBpm: Double = 120.0
     var bpmIncrement: Double = 0.0
     var durationInSeconds: Double = 60.0
+
     
     var currentTime: TimeInterval = 0.0
     
@@ -42,11 +49,19 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         setupAudioPlayer()
         loadLastSessionData()
         togglePracticeButton.isEnabled = false;
+        minusBpmButton.isEnabled = false
+        plusBpmButton.isEnabled = false
+        minusChangeButton.isEnabled = false
+        plusChangeButton.isEnabled = false
+        minusDurationButton.isEnabled = false
+        plusDurationButton.isEnabled = false
+        
         updateButtonEnabledState()
         
         bpmTextField.delegate = self
         durationTextField.delegate = self
         changeTextField.delegate = self
+        
         let grayColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
         togglePracticeButton.backgroundColor = grayColor
         togglePracticeButton.layer.cornerRadius = 40
@@ -160,8 +175,17 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     
     func updateButtonEnabledState() {
         togglePracticeButton.isEnabled = (bpmTextField.text != "") && (durationTextField.text != "") && (changeTextField.text != "")
+        minusBpmButton.isEnabled = bpmTextField.text != ""
+        plusBpmButton.isEnabled = bpmTextField.text != ""
+        minusChangeButton.isEnabled = changeTextField.text != ""
+        plusChangeButton.isEnabled = changeTextField.text != ""
+        minusDurationButton.isEnabled = durationTextField.text != ""
+        plusDurationButton.isEnabled = durationTextField.text != ""
+        
         updateButton()
     }
+    
+    
     
     func updateButton(){
         if togglePracticeButton.isEnabled{
@@ -183,6 +207,54 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
             startPractice()
         }
         updateButton()
+    }
+    
+    @IBAction func plusBpm(_ sender: UIButton){
+        var startBpmText = bpmTextField.text ?? ""
+        var startBpm = Int(startBpmText) ?? 0
+        
+        startBpm += 1
+        bpmTextField.text = String(startBpm)
+    }
+    
+    @IBAction func minusBpm(_ sender: UIButton){
+        var startBpmText = bpmTextField.text ?? ""
+        var startBpm = Int(startBpmText) ?? 0
+        
+        startBpm -= 1
+        bpmTextField.text = String(startBpm)
+    }
+    
+    @IBAction func plusDuration(_ sender: UIButton){
+        var durationText = durationTextField.text ?? ""
+        var duration = Int(durationText) ?? 0
+        
+        duration += 1
+        durationTextField.text = String(duration)
+    }
+    
+    @IBAction func minusDuration(_ sender: UIButton){
+        var durationText = durationTextField.text ?? ""
+        var duration = Int(durationText) ?? 0
+        
+        duration -= 1
+        durationTextField.text = String(duration)
+    }
+    
+    @IBAction func plusChange(_ sender: UIButton){
+        var changeText = changeTextField.text ?? ""
+        var change = Int(changeText) ?? 0
+        
+        change += 1
+        changeTextField.text = String(change)
+    }
+    
+    @IBAction func minusChange(_ sender: UIButton){
+        var changeText = changeTextField.text ?? ""
+        var change = Int(changeText) ?? 0
+        
+        change -= 1
+        changeTextField.text = String(change)
     }
     
     

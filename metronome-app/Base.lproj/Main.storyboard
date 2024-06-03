@@ -251,6 +251,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="plusBpm:" destination="uM0-wG-DRL" eventType="touchUpInside" id="gmu-ay-zn7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cd7-GW-ULl">
                                 <rect key="frame" x="327" y="337" width="50" height="35"/>
@@ -260,6 +263,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="plusDuration:" destination="uM0-wG-DRL" eventType="touchUpInside" id="z4w-Jh-1i7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acc-WH-B8B">
                                 <rect key="frame" x="327" y="385" width="50" height="35"/>
@@ -269,6 +275,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="plusChange:" destination="uM0-wG-DRL" eventType="touchUpInside" id="eY7-av-nz1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R34-I3-JaT">
                                 <rect key="frame" x="177" y="286" width="50" height="35"/>
@@ -278,6 +287,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="minusBpm:" destination="uM0-wG-DRL" eventType="touchUpInside" id="XyD-p4-nS1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANY-U1-IhN">
                                 <rect key="frame" x="177" y="336" width="50" height="35"/>
@@ -287,6 +299,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="minusDuration:" destination="uM0-wG-DRL" eventType="touchUpInside" id="7oB-Om-WDv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pn1-Uf-WQy">
                                 <rect key="frame" x="177" y="385" width="50" height="35"/>
@@ -296,6 +311,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="minusChange:" destination="uM0-wG-DRL" eventType="touchUpInside" id="wBe-LN-j1x"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-Wn-XRX">
                                 <rect key="frame" x="254" y="445" width="49" height="31"/>
@@ -342,6 +360,12 @@
                         <outlet property="durationTextField" destination="KTl-W2-KIB" id="iAy-Tu-xYU"/>
                         <outlet property="messageLabel" destination="GKX-pg-9fB" id="jtV-rZ-u3I"/>
                         <outlet property="metronomeLabel" destination="oyz-JM-gqs" id="LxF-LC-iAD"/>
+                        <outlet property="minusBpmButton" destination="R34-I3-JaT" id="VWj-DU-gfJ"/>
+                        <outlet property="minusChangeButton" destination="Pn1-Uf-WQy" id="Jx3-2A-bg1"/>
+                        <outlet property="minusDurationButton" destination="ANY-U1-IhN" id="UwJ-J1-FpS"/>
+                        <outlet property="plusBpmButton" destination="RbM-mN-u9Q" id="k1c-e3-dOb"/>
+                        <outlet property="plusChangeButton" destination="acc-WH-B8B" id="9rJ-4C-W8o"/>
+                        <outlet property="plusDurationButton" destination="Cd7-GW-ULl" id="Cxq-My-2Kf"/>
                         <outlet property="remainingTimeLabel" destination="Hdt-Ia-OGb" id="JTY-za-Lyg"/>
                         <outlet property="togglePracticeButton" destination="Cxt-Rc-9Ma" id="zHM-6Z-jWE"/>
                     </connections>
