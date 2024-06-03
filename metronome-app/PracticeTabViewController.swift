@@ -9,13 +9,18 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 
-class PracticeTabViewController: UIViewController {
+class PracticeTabViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet var metronomeLabel: UILabel!
     @IBOutlet var bpmTextField: UITextField! // スタートするbpm
     @IBOutlet var durationTextField: UITextField! // 練習周期
-    @IBOutlet var chengeTextField: UITextField! // 一回ごとに変えるbpm
+    @IBOutlet var changeTextField: UITextField! // 一回ごとに変えるbpm
     @IBOutlet weak var remainingTimeLabel: UILabel! // 残り時間表示
     @IBOutlet weak var messageLabel: UILabel! // 残り時間表示
+    
+    @IBOutlet var togglePracticeButton: UIButton! // 練習開始/終了
+    
+    
     
     var isVibrationEnabled: Bool = false // 振動させるか否か
     
@@ -36,10 +41,32 @@ class PracticeTabViewController: UIViewController {
         super.viewDidLoad()
         setupAudioPlayer()
         loadLastSessionData()
+        togglePracticeButton.isEnabled = false;
+        updateButtonEnabledState()
+        
+        bpmTextField.delegate = self
+        durationTextField.delegate = self
+        changeTextField.delegate = self
+        let grayColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
+        togglePracticeButton.backgroundColor = grayColor
+        togglePracticeButton.layer.cornerRadius = 40
+        
     }
-    @IBAction func toggleVibration(_ sender: UIButton) {
-        isVibrationEnabled.toggle()  // 振動の状態を切り替える
-        sender.setTitle(isVibrationEnabled ? "Vibration ON" : "Vibration OFF", for: .normal)
+    
+    
+    // キーボードをしまう
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    @IBAction func toggleVibrationSwitch(_ sender: UISwitch) {
+        isVibrationEnabled = sender.isOn  // スイッチの状態に基づいて振動を設定
     }
     
     func setupAudioPlayer() {
@@ -90,7 +117,7 @@ class PracticeTabViewController: UIViewController {
         defaults.synchronize()
     }
     
-    @IBAction func stopPractice(_ sender: UIButton){
+    func stopPractice(){
         stopMetronome()
     }
     
@@ -105,10 +132,10 @@ class PracticeTabViewController: UIViewController {
     
     
     func displayTextForSeconds(_ text: String, duration: TimeInterval) {
-            messageLabel.text = text
-            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                self.messageLabel.text = ""
-            }
+        messageLabel.text = text
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.messageLabel.text = ""
+        }
     }
     
     func updateCountdownLabel() {
@@ -119,7 +146,7 @@ class PracticeTabViewController: UIViewController {
         displayTextForSeconds("tempo is up!", duration: 3)
     }
     
-
+    
     func startMetronomeWithTimer() {
         durationTimer?.invalidate()
         metronomeLabel.text = String(format: "%.0f", currentBpm)
@@ -127,9 +154,42 @@ class PracticeTabViewController: UIViewController {
         
     }
     
-    @IBAction func startPractice(_ sender: UIButton) {
+    @IBAction func textFieldDidChangeSelection(_ textField: UITextField) {
+        updateButtonEnabledState() // テキストフィールドの選択が変更されるたびに呼び出す
+    }
+    
+    func updateButtonEnabledState() {
+        togglePracticeButton.isEnabled = (bpmTextField.text != "") && (durationTextField.text != "") && (changeTextField.text != "")
+        updateButton()
+    }
+    
+    func updateButton(){
+        if togglePracticeButton.isEnabled{
+            let buttonColor = UIColor(red: 229/255, green: 145/255, blue: 239/255, alpha: 1)
+            let buttonTitle = isMetronomeActive ? "Stop" : "Start"
+            togglePracticeButton.setTitle(buttonTitle, for: .normal)
+            togglePracticeButton.backgroundColor = buttonColor
+            togglePracticeButton.layer.cornerRadius = 40
+        }
+    }
+    
+    @IBAction func togglePractice(_ sender: UIButton){
+        togglePracticeButton.isEnabled = true;
+        
+        print(isMetronomeActive)
+        if(isMetronomeActive){
+            stopPractice()
+        }else{
+            startPractice()
+        }
+        updateButton()
+    }
+    
+    
+    func startPractice() {
+        isMetronomeActive = true
         guard let bpmText = bpmTextField.text, let initialBpm = Double(bpmText),
-              let changeText = chengeTextField.text, let bpmIncrement = Double(changeText),
+              let changeText = changeTextField.text, let bpmIncrement = Double(changeText),
               let durationText = durationTextField.text, let durationInSeconds = Double(durationText) else {
             print("Invalid BPM or duration")
             return
@@ -138,16 +198,18 @@ class PracticeTabViewController: UIViewController {
         self.bpmIncrement = bpmIncrement
         self.currentBpm = initialBpm
         self.currentTime = durationInSeconds
-        
+        self.updateCountdownLabel()
+        startMetronomeWithTimer()
         
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             guard let self = self else {return}
             
             
-            self.updateCountdownLabel()
+            
             print("currentBpm :", currentBpm) //OK
             print("currentTime :", currentTime) //OK
             self.currentTime -= 1.0
+            self.updateCountdownLabel()
             
             
             if self.currentTime <= 0{

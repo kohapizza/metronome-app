@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     @IBOutlet var metronomeLabel: UILabel!
     @IBOutlet var bpmSlider: UISlider!
     
+    @IBOutlet var musicButton: UIButton!
+    
     var audioPlayer: AVAudioPlayer?
     var timer: Timer?
     var isMetronomeActive: Bool = false
@@ -20,6 +22,8 @@ class HomeViewController: UIViewController {
         bpmSlider.value = 100 //初期化
         setupAudioPlayer()
     }
+    
+   
     
     func setupAudioPlayer() {
             guard let soundURL = Bundle.main.url(forResource: "sound", withExtension: "wav") else {
@@ -58,7 +62,7 @@ class HomeViewController: UIViewController {
         audioPlayer?.play()
     }
     
-    @IBAction func startMetronome(_ sender: UIButton) {
+    func startMetronome() {
         isMetronomeActive = true
         
         let nowBpm = max(Double(metronomeLabel.text ?? "120") ?? 120.0, 1.0)
@@ -68,7 +72,7 @@ class HomeViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: (60.0 / nowBpm), target: self, selector: #selector(playSound), userInfo: nil, repeats: true)
     }
     
-    @IBAction func stopMetronome(_ sender: UIButton) {
+    func stopMetronome() {
         timer?.invalidate()
         isMetronomeActive = false
     }
@@ -89,6 +93,20 @@ class HomeViewController: UIViewController {
         if isMetronomeActive{
             restartMetronome()
         }
+    }
+    
+    @IBAction func toggleMetronome(_ sender: UIButton) {
+        updateButton()
+        if isMetronomeActive {
+            stopMetronome()
+        } else {
+            startMetronome()
+        }
+    }
+    
+    func updateButton(){
+        let buttonImage = isMetronomeActive ? UIImage(systemName: "play.fill") : UIImage(systemName: "pause.fill")
+        musicButton.setImage(buttonImage, for: .normal)
     }
 
 }
