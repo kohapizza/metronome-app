@@ -15,10 +15,11 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var bpmTextField: UITextField! // スタートするbpm
     @IBOutlet var durationTextField: UITextField! // 練習周期
     @IBOutlet var changeTextField: UITextField! // 一回ごとに変えるbpm
-    @IBOutlet weak var remainingTimeLabel: UILabel! // 残り時間表示
     @IBOutlet weak var messageLabel: UILabel! // 残り時間表示
     
     @IBOutlet var togglePracticeButton: UIButton!
+    
+    @IBOutlet var progressView: UIProgressView!
     
     
     @IBOutlet var plusBpmButton: UIButton!
@@ -59,13 +60,15 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         updateButtonEnabledState()
         
         bpmTextField.delegate = self
+        bpmTextField.keyboardType = UIKeyboardType.numberPad
         durationTextField.delegate = self
+        durationTextField.keyboardType = UIKeyboardType.numberPad
         changeTextField.delegate = self
+        changeTextField.keyboardType = UIKeyboardType.numberPad
         
         let grayColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
         togglePracticeButton.backgroundColor = grayColor
         togglePracticeButton.layer.cornerRadius = 40
-        
     }
     
     
@@ -73,12 +76,6 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     
     @IBAction func toggleVibrationSwitch(_ sender: UISwitch) {
         isVibrationEnabled = sender.isOn  // スイッチの状態に基づいて振動を設定
@@ -103,7 +100,6 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         countdownTimer?.invalidate()
         durationTimer?.invalidate()
         isMetronomeActive = false
-        remainingTimeLabel.text = "00:00"
         saveLastBpm()
         print("Metronome stopped")
     }
@@ -118,7 +114,7 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
             dateFormatter.timeStyle = .none
             
             // 日付の表示のためのフォーマット
-            messageLabel.text = "Last BPM: \(bpm) on \(dateFormatter.string(from: date))"
+            messageLabel.text = "前回の記録は: \(Int(bpm)) だよ！"
         }
     }
     
@@ -153,8 +149,19 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func updateCountdownLabel() {
-        remainingTimeLabel.text = "Time remaining: \(Int(currentTime)) seconds"
+    func updateProgressView(){
+        guard let durationText = durationTextField.text, let totalDuration = Float(durationText) else {
+            print("Invalid duration input")
+            return
+        }
+        
+        // 残り時間に基づいて進捗を計算
+        let remainingTime = Float(currentTime)
+        let progress = remainingTime / totalDuration
+
+        // 進捗の更新
+        progressView.setProgress(progress, animated: true)
+        print("progress :", progress)
     }
     
     func updateMessageLabel(){
@@ -170,6 +177,7 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func textFieldDidChangeSelection(_ textField: UITextField) {
+        metronomeLabel.text = bpmTextField.text
         updateButtonEnabledState() // テキストフィールドの選択が変更されるたびに呼び出す
     }
     
@@ -270,26 +278,24 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         self.bpmIncrement = bpmIncrement
         self.currentBpm = initialBpm
         self.currentTime = durationInSeconds
-        self.updateCountdownLabel()
+        self.updateProgressView()
         startMetronomeWithTimer()
         
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             guard let self = self else {return}
             
-            
-            
             print("currentBpm :", currentBpm) //OK
             print("currentTime :", currentTime) //OK
             self.currentTime -= 1.0
-            self.updateCountdownLabel()
+            self.updateProgressView()
             
             
             if self.currentTime <= 0{
-                self.updateCountdownLabel()
+                self.updateProgressView()
                 self.currentTime = durationInSeconds
                 
                 self.updateMessageLabel()
-                self.updateCountdownLabel()
+                self.updateProgressView()
                 self.startMetronomeWithTimer()
                 self.currentBpm += bpmIncrement
                 
