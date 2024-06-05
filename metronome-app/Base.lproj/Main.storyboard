@@ -341,6 +341,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日の最高記録" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u42-kX-cZe">
+                                <rect key="frame" x="40" y="131" width="313" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DTc-sN-GSq"/>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -350,6 +357,7 @@
                         <outlet property="bpmTextField" destination="IXI-N0-S4I" id="98A-Hb-sv7"/>
                         <outlet property="changeTextField" destination="adx-P4-Mgt" id="FLJ-Xf-L5S"/>
                         <outlet property="durationTextField" destination="KTl-W2-KIB" id="iAy-Tu-xYU"/>
+                        <outlet property="highestLabel" destination="u42-kX-cZe" id="sNN-ID-gY4"/>
                         <outlet property="messageLabel" destination="GKX-pg-9fB" id="jtV-rZ-u3I"/>
                         <outlet property="metronomeLabel" destination="oyz-JM-gqs" id="LxF-LC-iAD"/>
                         <outlet property="minusBpmButton" destination="R34-I3-JaT" id="VWj-DU-gfJ"/>
