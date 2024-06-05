@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import EventKit
 
 class CalenderTabViewController: UIViewController, UICalendarViewDelegate {
     var calendarView: UICalendarView!

@@ -71,6 +71,20 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         let grayColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
         togglePracticeButton.backgroundColor = grayColor
         togglePracticeButton.layer.cornerRadius = 40
+        
+        printAllBpmRecords()
+    }
+    
+    func printAllBpmRecords() {
+        let defaults = UserDefaults.standard
+        let keys = defaults.dictionaryRepresentation().keys.filter { $0.starts(with: "2024") } // 例として2024年のデータだけをフィルタリング
+
+        print("All BPM Records:")
+        for key in keys {
+            if let bpm = defaults.double(forKey: key) as Double? {
+                print("\(key): \(bpm)")
+            }
+        }
     }
     
     
@@ -197,7 +211,6 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     var i = 1
     
     func startMetronomeWithTimer() {
-        print(i, "回目のstartWithTimer")
         i+=1
         durationTimer?.invalidate()
         metronomeLabel.text = String(format: "%.0f", currentBpm)
@@ -310,13 +323,12 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             guard let self = self else {return}
             
-            print("currentBpm :", currentBpm) //OK
-            print("currentTime :", currentTime) //OK
+//            print("currentBpm :", currentBpm) //OK
+//            print("currentTime :", currentTime) //OK
             self.currentTime -= 1.0
             self.updateProgressView()
             
             if self.currentTime <= 0{
-                //self.updateProgressView()
                 self.resetProgressView()
                 self.currentTime = durationInSeconds
                 
