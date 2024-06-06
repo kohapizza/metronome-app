@@ -7,25 +7,40 @@
 
 import UIKit
 
-class CalenderTabViewController: UIViewController, UICalendarViewDelegate {
+class CalenderTabViewController: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
     var calendarView: UICalendarView!
     var bpmLabel: UILabel!
-    
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpCalendar()
         setupLabel()
         
+        printAllBpmRecords()
+    }
+    
+    func printAllBpmRecords() {
+        let defaults = UserDefaults.standard
+        let keys = defaults.dictionaryRepresentation().keys.filter { $0.starts(with: "2024") } // 例として2024年のデータだけをフィルタリング
+
+        print("All BPM Records:")
+        for key in keys {
+            if let bpm = defaults.double(forKey: key) as Double? {
+                print("\(key): \(bpm)")
+            }
+        }
+    }
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        print("Data is", dateComponents)
     }
     
     func setUpCalendar(){
         calendarView = UICalendarView()
+        let selection = UICalendarSelectionSingleDate(delegate: self)
+        calendarView.selectionBehavior = selection
+        
         calendarView.delegate = self
         calendarView.tintColor = UIColor(red: 229/255, green: 145/255, blue: 239/255, alpha: 1)
         calendarView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +52,30 @@ class CalenderTabViewController: UIViewController, UICalendarViewDelegate {
             self.view.rightAnchor.constraint(equalTo: calendarView.rightAnchor)
         ])
     }
+    
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        guard let date = Calendar.current.date(from: dateComponents) else { return nil }
+            let key = dateFormatter.string(from: date)
+            let bpm = UserDefaults.standard.double(forKey: key)
+            
+            if bpm > 0 {
+                return .customView {
+                    let emojiLabel = UILabel()
+                    emojiLabel.text = "♪"
+                    emojiLabel.textAlignment = .center
+                    return emojiLabel
+                }
+            }
+        return nil
+    }
+    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    
     
     func setupLabel() {
         bpmLabel = UILabel()
@@ -50,14 +89,5 @@ class CalenderTabViewController: UIViewController, UICalendarViewDelegate {
             bpmLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             calendarView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
         ])
-    }
-    // ユーザーが日付を選択したときの処理
-    func touchCalendarView(_ calendarView: UICalendarView, didSelectDate dateComponents: DateComponents) {
-        guard let date = Calendar.current.date(from: dateComponents) else { return }
-        let key = dateFormatter.string(from: date)
-        let maxBpm = UserDefaults.standard.double(forKey: key)
-        bpmLabel.text = "Max BPM on \(key): \(maxBpm)"
-        print("key: ", key)
-        print("maxBpm :", maxBpm)
     }
 }
