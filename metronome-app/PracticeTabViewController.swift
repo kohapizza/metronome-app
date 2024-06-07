@@ -47,6 +47,7 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
     
     var isMetronomeActive: Bool = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudioPlayer()

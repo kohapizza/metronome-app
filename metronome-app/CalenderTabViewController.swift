@@ -10,6 +10,20 @@ import UIKit
 class CalenderTabViewController: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
     var calendarView: UICalendarView!
     var bpmLabel: UILabel!
+    
+    // Spotifyマネージャ
+    var spotifyManager: SpotifyManager!
+
+//    // URLコンテキスト取得時に呼ばれる
+//    func onOpenURLContext(_ url: URL) {
+//        self.spotifyManager.onURLContext(url)
+//    }
+//
+//    // ボタンクリック時に呼ばれる
+//    @IBAction func onClick(sender: UIButton) {
+//        self.spotifyManager.authorizeAndPlayURI("spotify:track:0pOh4SGNsJ298cNpnSiAYa")
+//    //https://open.spotify.com/intl-ja/track/0pOh4SGNsJ298cNpnSiAYa?si=0e7548daeab3494c
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +32,9 @@ class CalenderTabViewController: UIViewController, UICalendarViewDelegate, UICal
         setupLabel()
         
         printAllBpmRecords()
+        
+        // Spotifyマネージャの生成
+        self.spotifyManager = SpotifyManager()
     }
     
     func printAllBpmRecords() {

@@ -9,21 +9,26 @@ import UIKit
 
 class GameTabViewController: UIViewController {
 
+    // Spotifyマネージャ
+    var spotifyManager: SpotifyManager!
+
+    // ロード時に呼ばれる
     override func viewDidLoad() {
-    
-
-        // Do any additional setup after loading the view.
+        super.viewDidLoad()
+        
+        // Spotifyマネージャの生成
+        self.spotifyManager = SpotifyManager()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // URLコンテキスト取得時に呼ばれる
+    func onOpenURLContext(_ url: URL) {
+        self.spotifyManager.onURLContext(url)
     }
-    */
+
+    // ボタンクリック時に呼ばれる
+    @IBAction func onClick(sender: UIButton) {
+        self.spotifyManager.authorizeAndPlayURI("spotify:track:0pOh4SGNsJ298cNpnSiAYa")
+    //https://open.spotify.com/intl-ja/track/0pOh4SGNsJ298cNpnSiAYa?si=0e7548daeab3494c
+    }
 
 }

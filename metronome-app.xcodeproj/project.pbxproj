@@ -18,7 +18,24 @@
 		0FBC94982BFF273300D87A25 /* PracticeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */; };
 		0FBC949A2BFF274500D87A25 /* CalenderTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */; };
 		0FBC949C2BFF275000D87A25 /* GameTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC949B2BFF275000D87A25 /* GameTabViewController.swift */; };
+		0FD53C7C2C12FACB002CA538 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD53C7A2C12FABA002CA538 /* SpotifyiOS.xcframework */; };
+		0FD53C7D2C12FACB002CA538 /* SpotifyiOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD53C7A2C12FABA002CA538 /* SpotifyiOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FD53C802C12FC26002CA538 /* SpotofyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD53C7F2C12FC26002CA538 /* SpotofyManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0FD53C7E2C12FACB002CA538 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0FD53C7D2C12FACB002CA538 /* SpotifyiOS.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0F3A4D352C0701B400E145DA /* sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound.wav; sourceTree = SOURCE_ROOT; };
@@ -34,6 +51,10 @@
 		0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTabViewController.swift; sourceTree = "<group>"; };
 		0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderTabViewController.swift; sourceTree = "<group>"; };
 		0FBC949B2BFF275000D87A25 /* GameTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTabViewController.swift; sourceTree = "<group>"; };
+		0FD53C762C12F441002CA538 /* ios-sdk-2.0.1 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "ios-sdk-2.0.1"; path = "../../ios-sdk-2.0.1"; sourceTree = "<group>"; };
+		0FD53C772C12F514002CA538 /* metronome-app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "metronome-app-Bridging-Header.h"; sourceTree = "<group>"; };
+		0FD53C7A2C12FABA002CA538 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SpotifyiOS.xcframework; path = "../ios-sdk-2.0.1/SpotifyiOS.xcframework"; sourceTree = "<group>"; };
+		0FD53C7F2C12FC26002CA538 /* SpotofyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotofyManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FD53C7C2C12FACB002CA538 /* SpotifyiOS.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,8 +72,10 @@
 		0FBC946D2BFCF89E00D87A25 = {
 			isa = PBXGroup;
 			children = (
+				0FD53C772C12F514002CA538 /* metronome-app-Bridging-Header.h */,
 				0FBC94782BFCF89E00D87A25 /* metronome-app */,
 				0FBC94772BFCF89E00D87A25 /* Products */,
+				0FD53C782C12FA5E002CA538 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,19 @@
 				0FBC94972BFF273300D87A25 /* PracticeTabViewController.swift */,
 				0FBC94992BFF274500D87A25 /* CalenderTabViewController.swift */,
 				0FBC949B2BFF275000D87A25 /* GameTabViewController.swift */,
+				0FD53C7F2C12FC26002CA538 /* SpotofyManager.swift */,
 				0F3A4D352C0701B400E145DA /* sound.wav */,
+				0FD53C762C12F441002CA538 /* ios-sdk-2.0.1 */,
 			);
 			path = "metronome-app";
+			sourceTree = "<group>";
+		};
+		0FD53C782C12FA5E002CA538 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FD53C7A2C12FABA002CA538 /* SpotifyiOS.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +126,7 @@
 				0FBC94722BFCF89E00D87A25 /* Sources */,
 				0FBC94732BFCF89E00D87A25 /* Frameworks */,
 				0FBC94742BFCF89E00D87A25 /* Resources */,
+				0FD53C7E2C12FACB002CA538 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +195,7 @@
 				0FBC94902BFE40E300D87A25 /* HomeViewController.swift in Sources */,
 				0FBC94982BFF273300D87A25 /* PracticeTabViewController.swift in Sources */,
 				0FBC947C2BFCF89E00D87A25 /* SceneDelegate.swift in Sources */,
+				0FD53C802C12FC26002CA538 /* SpotofyManager.swift in Sources */,
 				0FBC949C2BFF275000D87A25 /* GameTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,9 +361,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.Saeki.dooon.metronome-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "metronome-app-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -353,9 +391,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.Saeki.dooon.metronome-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "metronome-app-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
