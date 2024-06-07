@@ -71,22 +71,7 @@ class PracticeTabViewController: UIViewController, UITextFieldDelegate {
         let grayColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
         togglePracticeButton.backgroundColor = grayColor
         togglePracticeButton.layer.cornerRadius = 40
-        
-        printAllBpmRecords()
     }
-    
-    func printAllBpmRecords() {
-        let defaults = UserDefaults.standard
-        let keys = defaults.dictionaryRepresentation().keys.filter { $0.starts(with: "2024") } // 例として2024年のデータだけをフィルタリング
-
-        print("All BPM Records:")
-        for key in keys {
-            if let bpm = defaults.double(forKey: key) as Double? {
-                print("\(key): \(bpm)")
-            }
-        }
-    }
-    
     
     // キーボードをしまう
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

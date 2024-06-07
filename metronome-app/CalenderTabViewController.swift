@@ -32,9 +32,7 @@ class CalenderTabViewController: UIViewController, UICalendarViewDelegate, UICal
         }
     }
     
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        print("Data is", dateComponents)
-    }
+    
     
     func setUpCalendar(){
         calendarView = UICalendarView()
@@ -76,18 +74,31 @@ class CalenderTabViewController: UIViewController, UICalendarViewDelegate, UICal
     }()
     
     
-    
     func setupLabel() {
         bpmLabel = UILabel()
-        bpmLabel.text = "あああああ"
+        bpmLabel.text = ""
         bpmLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bpmLabel)
         bpmLabel.textAlignment = .center
+        
         NSLayoutConstraint.activate([
             bpmLabel.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 20),
             bpmLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             bpmLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             calendarView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
         ])
+    }
+    
+    // 日付選択したときにその日の最高bpmを表示
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        guard let dateComponents = dateComponents,
+              let date = Calendar.current.date(from: dateComponents),
+              let key = dateFormatter.string(from: date) as String? else {
+            bpmLabel.text = "No data"
+            return
+        }
+        
+        let maxBpm = UserDefaults.standard.double(forKey: key)
+        bpmLabel.text = maxBpm > 0 ? "Max BPM : \(Int(maxBpm))" : "No Practice"
     }
 }
