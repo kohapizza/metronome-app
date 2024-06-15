@@ -15,14 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
-    // URLコンテキスト取得時に呼ばれる
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let url = URLContexts.first?.url else {
-            return
-        }
-        let vc = window?.rootViewController as! GameTabViewController
-        vc.onOpenURLContext(url)
-    }
 }
 
 //import UIKit

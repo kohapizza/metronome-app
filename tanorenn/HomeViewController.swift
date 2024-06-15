@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         bpmSlider.value = 100 //初期化
         setupAudioPlayer()
+        setCustomFont()
     }
     
    
@@ -107,6 +108,13 @@ class HomeViewController: UIViewController {
     func updateButton(){
         let buttonImage = isMetronomeActive ? UIImage(systemName: "play.fill") : UIImage(systemName: "pause.fill")
         musicButton.setImage(buttonImage, for: .normal)
+    }
+    
+    func setCustomFont() {
+        let fontName = "ZenMaruGothic-Medium"
+        
+        // ラベル
+        metronomeLabel.font = UIFont(name: fontName, size: metronomeLabel.font.pointSize)
     }
 
 }
