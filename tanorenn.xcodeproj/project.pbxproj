@@ -137,7 +137,7 @@
 			dependencies = (
 			);
 			name = tanorenn;
-			productName = "tanorenn";
+			productName = tanorenn;
 			productReference = 0FBC94762BFCF89E00D87A25 /* tanorenn.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -361,7 +361,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D8699ZRULU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "tanorenn/Info.plist";
+				INFOPLIST_FILE = tanorenn/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = tanorenn;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -371,7 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.Saeki.dooon.metronome-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -394,7 +395,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D8699ZRULU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "tanorenn/Info.plist";
+				INFOPLIST_FILE = tanorenn/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = tanorenn;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -404,7 +406,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "app.Saeki.dooon.metronome-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";

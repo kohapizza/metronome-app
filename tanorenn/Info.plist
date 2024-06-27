@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Bundle version string</key>
+	<string>2</string>
+	<key>CFBundleName</key>
+	<string>tanorenn</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0</string>
+	<key>CFBundleVersion</key>
+	<string>2.0</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ZenMaruGothic-Black.ttf</string>
