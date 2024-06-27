@@ -10,7 +10,7 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="tanorenn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
         <!--Caleder-->
         <scene sceneID="iok-mF-kUw">
             <objects>
-                <viewController id="K09-2Y-B9Y" customClass="CalenderTabViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="K09-2Y-B9Y" customClass="CalenderTabViewController" customModule="tanorenn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R8i-Og-PD3">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -118,7 +118,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="69P-qT-iAX">
             <objects>
-                <tabBarController id="keQ-Sn-OJW" customClass="TabBarViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="keQ-Sn-OJW" customClass="TabBarViewController" customModule="tanorenn" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="gaw-iZ-8Yq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -138,7 +138,7 @@
         <!--Practice-->
         <scene sceneID="2wu-lX-Rdp">
             <objects>
-                <viewController id="uM0-wG-DRL" customClass="PracticeTabViewController" customModule="metronome_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uM0-wG-DRL" customClass="PracticeTabViewController" customModule="tanorenn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5A-lt-uSA">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
